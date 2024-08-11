@@ -20,7 +20,28 @@ typedef struct binary_tree_s
 	struct binary_tree_s *right;
 } binary_tree_t;
 
+typedef struct heap_s {
+    int n;
+    struct heap_s *left;
+    struct heap_s *right;
+} heap_t;
+
+typedef struct bst_s {
+    int n;
+    struct bst_s *left;
+    struct bst_s *right;
+} bst_t;
+
+typedef struct avl_s {
+    int n;
+    struct avl_s *left;
+    struct avl_s *right;
+    int height;
+} avl_t;
+
 void binary_tree_print(const binary_tree_t *);
+void heap_print(const heap_t *heap);
+void heap_delete(heap_t *heap);
 void binary_tree_delete(binary_tree_t *tree);
 void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int));
 void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int));
@@ -37,6 +58,8 @@ int binary_tree_is_avl(const binary_tree_t *tree);
 int binary_tree_is_heap(const binary_tree_t *tree);
 int heap_extract(heap_t **root);
 int *heap_to_sorted_array(heap_t *heap, size_t *size);
+size_t binary_tree_size(const binary_tree_t *tree);
+size_t heap_size(const heap_t *heap);
 size_t binary_tree_height(const binary_tree_t *tree);
 size_t binary_tree_depth(const binary_tree_t *tree);
 size_t binary_tree_size(const binary_tree_t *tree);
