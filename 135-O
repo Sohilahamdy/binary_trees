@@ -1,0 +1,10 @@
+n a Binary Heap, the average time complexities for various operations are as follows:
+
+Inserting the value n:
+O(log n)
+
+Extracting the root node:
+O(log n)
+
+Searching for a node in a binary heap of size n:
+O(n)

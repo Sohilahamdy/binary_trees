@@ -1,0 +1,10 @@
+The AVL tree is a self-balancing binary search tree, which ensures that the heights of the two child subtrees of any node differ by no more than one. This balancing property guarantees that the tree remains approximately balanced, leading to logarithmic time complexities for various operations. Here are the average time complexities for the specified operations on an AVL tree:
+
+Inserting the value n:
+O(log n)
+
+Removing the node with the value n:
+O(log n)
+
+Searching for a node in an AVL tree of size n:
+O(log n)

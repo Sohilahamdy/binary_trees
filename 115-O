@@ -1,0 +1,10 @@
+In a Binary Search Tree (BST), the average time complexities for operations depend on the shape of the tree. For a balanced BST, the complexities are logarithmic, but for an unbalanced BST, they can be linear in the worst case. Here are the average time complexities for the operations on a BST:
+
+Inserting the value n:
+O(log n)
+
+Removing the node with the value n:
+O(log n)
+
+Searching for a node in a BST of size n:
+O(log n)
