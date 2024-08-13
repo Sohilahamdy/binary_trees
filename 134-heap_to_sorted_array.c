@@ -7,7 +7,7 @@
  *
  * Return: Number of nodes in the heap
  */
-static size_t heap_size(const heap_t *heap)
+size_t heap_size(const heap_t *heap)
 {
     if (!heap)
         return (0);

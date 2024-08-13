@@ -71,7 +71,7 @@ int heap_extract(heap_t **root)
         return (0);
 
     /* Count the number of nodes in the heap */
-    size = binary_tree_size(*root);
+    size = heap_size(*root);
 
     /* Find the last node in the heap */
     find_last_node(*root, &last_node, 0, &size);

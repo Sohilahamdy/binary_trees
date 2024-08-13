@@ -7,12 +7,12 @@
  *
  * Return: Number of nodes in the tree
  */
-size_t binary_tree_size(const binary_tree_t *tree)
+size_t heap_size(const binary_tree_t *tree)
 {
     if (!tree)
         return (0);
 
-    return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
+    return (1 + heap_size(tree->left) + heap_size(tree->right));
 }
 
 /**
@@ -22,7 +22,7 @@ size_t binary_tree_size(const binary_tree_t *tree)
  *
  * Return: Pointer to the new node, or NULL on failure
  */
-heap_t *binary_tree_insert(heap_t **tree, int value)
+heap_t *heap_insert_node(heap_t **tree, int value)
 {
     size_t index, size;
     heap_t *new_node = NULL;
@@ -84,7 +84,7 @@ heap_t *heap_insert(heap_t **root, int value)
     if (!root)
         return (NULL);
 
-    new_node = binary_tree_insert(root, value);
+    new_node = heap_insert_node(root, value);
     if (!new_node)
         return (NULL);
 

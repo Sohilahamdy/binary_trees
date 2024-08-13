@@ -23,7 +23,7 @@ heap_t *array_to_heap(int *array, size_t size)
         if (!new_node)
         {
             /* Clean up and return NULL on failure */
-            binary_tree_delete(heap);
+            heap_delete(heap);
             return (NULL);
         }
     }

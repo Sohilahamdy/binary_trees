@@ -22,6 +22,7 @@ typedef struct binary_tree_s
 
 typedef struct heap_s {
     int n;
+    struct heap_s *parent;
     struct heap_s *left;
     struct heap_s *right;
 } heap_t;
