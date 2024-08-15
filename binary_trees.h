@@ -50,6 +50,7 @@ typedef struct heap_s
 typedef struct bst_s
 {
 	int n;
+	struct bst_s *parent;
 	struct bst_s *left;
 	struct bst_s *right;
 } bst_t;
@@ -74,7 +75,8 @@ typedef struct avl_s
 } avl_t;
 
 /* Function prototypes */
-void binary_tree_print(const binary_tree_t *);
+void binary_tree_print(const binary_tree_t *tree);
+void bst_print(const bst_t *tree);
 void heap_print(const heap_t *heap);
 void heap_delete(heap_t *heap);
 void binary_tree_delete(binary_tree_t *tree);

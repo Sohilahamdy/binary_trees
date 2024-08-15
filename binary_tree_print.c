@@ -97,3 +97,19 @@ void binary_tree_print(const binary_tree_t *tree)
 	}
 	free(s);
 }
+
+/**
+ * bst_print - prints bst tree
+ *
+ * @tree: Pointer to the root node of the tree to print
+ */
+void bst_print(const bst_t *tree)
+{
+	if (tree == NULL)
+		return;
+
+	printf("%d\n", tree->n);
+
+	bst_print(tree->left);
+	bst_print(tree->right);
+}
