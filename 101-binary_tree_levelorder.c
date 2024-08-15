@@ -9,8 +9,8 @@
  */
 void enqueue(binary_tree_t **queue, binary_tree_t *node, int *tail)
 {
-    queue[*tail] = node;
-    (*tail)++;
+	queue[*tail] = node;
+	(*tail)++;
 }
 
 /**
@@ -22,35 +22,38 @@ void enqueue(binary_tree_t **queue, binary_tree_t *node, int *tail)
  */
 binary_tree_t *dequeue(binary_tree_t **queue, int *head)
 {
-    (*head)++;
-    return queue[*head - 1];
+	(*head)++;
+	return (queue[*head - 1]);
 }
 
 /**
- * binary_tree_levelorder - Goes through a binary tree using level-order traversal
+ * binary_tree_levelorder - Goes through a binary tree using level-order
+ * traversal
  * @tree: Pointer to the root node of the tree to traverse
  * @func: Pointer to a function to call for each node. The value in the node
  *        must be passed as a parameter to this function.
  */
-void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
+void binary_tree_levelorder(const binary_tree_t *tree,
+		void (*func)(int))
 {
-    binary_tree_t *queue[1024]; /* Array-based queue for level-order traversal */
-    int head = 0, tail = 0;
+	binary_tree_t *queue[1024];
+	int head = 0, tail = 0;
 
-    if (!tree || !func)
-        return;
+	if (!tree || !func)
+		return;
 
-    enqueue(queue, (binary_tree_t *)tree, &tail); /* Start with the root */
+	enqueue(queue, (binary_tree_t *)tree, &tail);
 
-    while (head < tail)
-    {
-        binary_tree_t *current = dequeue(queue, &head);
-        func(current->n); /* Call the function for the current node */
+	while (head < tail)
+	{
+		binary_tree_t *current = dequeue(queue, &head);
 
-        if (current->left)
-            enqueue(queue, current->left, &tail);
+		func(current->n);
 
-        if (current->right)
-            enqueue(queue, current->right, &tail);
-    }
+		if (current->left)
+			enqueue(queue, current->left, &tail);
+
+		if (current->right)
+			enqueue(queue, current->right, &tail);
+	}
 }

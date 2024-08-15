@@ -8,16 +8,16 @@
  */
 int binary_tree_is_heap(const binary_tree_t *tree)
 {
-    size_t total_nodes, index;
-    
-    if (!tree)
-        return (0);
+	size_t total_nodes, index;
 
-    total_nodes = binary_tree_size(tree);
-    index = binary_tree_index(tree);
+	if (!tree)
+		return (0);
 
-    return (binary_tree_is_complete(tree, index, total_nodes) &&
-            binary_tree_is_max_heap(tree));
+	total_nodes = binary_tree_size(tree);
+	index = binary_tree_index(tree);
+
+	return (binary_tree_is_complete(tree, index, total_nodes) &&
+			binary_tree_is_max_heap(tree));
 }
 
 /**
@@ -28,10 +28,10 @@ int binary_tree_is_heap(const binary_tree_t *tree)
  */
 size_t binary_tree_size(const binary_tree_t *tree)
 {
-    if (!tree)
-        return (0);
+	if (!tree)
+		return (0);
 
-    return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
+	return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
 }
 
 /**
@@ -42,19 +42,19 @@ size_t binary_tree_size(const binary_tree_t *tree)
  */
 size_t binary_tree_index(const binary_tree_t *tree)
 {
-    size_t index = 0;
+	size_t index = 0;
 
-    while (tree->parent)
-    {
-        if (tree->parent->right == tree)
-            index = 2 * index + 1;
-        else
-            index = 2 * index;
+	while (tree->parent)
+	{
+		if (tree->parent->right == tree)
+			index = 2 * index + 1;
+		else
+			index = 2 * index;
 
-        tree = tree->parent;
-    }
+		tree = tree->parent;
+	}
 
-    return (index);
+	return (index);
 }
 
 /**
@@ -65,16 +65,17 @@ size_t binary_tree_index(const binary_tree_t *tree)
  *
  * Return: 1 if the tree is complete, 0 otherwise
  */
-int binary_tree_is_complete(const binary_tree_t *tree, size_t index, size_t total_nodes)
+int binary_tree_is_complete(const binary_tree_t *tree,
+		size_t index, size_t total_nodes)
 {
-    if (!tree)
-        return (1);
+	if (!tree)
+		return (1);
 
-    if (index >= total_nodes)
-        return (0);
+	if (index >= total_nodes)
+		return (0);
 
-    return (binary_tree_is_complete(tree->left, 2 * index + 1, total_nodes) &&
-            binary_tree_is_complete(tree->right, 2 * index + 2, total_nodes));
+	return (binary_tree_is_complete(tree->left, 2 * index + 1, total_nodes) &&
+			binary_tree_is_complete(tree->right, 2 * index + 2, total_nodes));
 }
 
 /**
@@ -85,15 +86,15 @@ int binary_tree_is_complete(const binary_tree_t *tree, size_t index, size_t tota
  */
 int binary_tree_is_max_heap(const binary_tree_t *tree)
 {
-    if (!tree)
-        return (1);
+	if (!tree)
+		return (1);
 
-    if (tree->left && tree->n < tree->left->n)
-        return (0);
+	if (tree->left && tree->n < tree->left->n)
+		return (0);
 
-    if (tree->right && tree->n < tree->right->n)
-        return (0);
+	if (tree->right && tree->n < tree->right->n)
+		return (0);
 
-    return (binary_tree_is_max_heap(tree->left) &&
-            binary_tree_is_max_heap(tree->right));
+	return (binary_tree_is_max_heap(tree->left) &&
+			binary_tree_is_max_heap(tree->right));
 }

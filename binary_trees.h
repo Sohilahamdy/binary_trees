@@ -20,26 +20,60 @@ typedef struct binary_tree_s
 	struct binary_tree_s *right;
 } binary_tree_t;
 
-typedef struct heap_s {
-    int n;
-    struct heap_s *parent;
-    struct heap_s *left;
-    struct heap_s *right;
+/**
+ * struct heap_s - Max Binary Heap node
+ *
+ * @n: Integer stored in the node
+ * @parent: Pointer to the parent node
+ * @left: Pointer to the left child node
+ * @right: Pointer to the right child node
+ *
+ * Description: Node structure for a Max Binary Heap.
+ */
+typedef struct heap_s
+{
+	int n;
+	struct heap_s *parent;
+	struct heap_s *left;
+	struct heap_s *right;
 } heap_t;
 
-typedef struct bst_s {
-    int n;
-    struct bst_s *left;
-    struct bst_s *right;
+/**
+ * struct bst_s - Binary Search Tree node
+ *
+ * @n: Integer stored in the node
+ * @left: Pointer to the left child node
+ * @right: Pointer to the right child node
+ *
+ * Description: Node structure for a Binary Search Tree.
+ */
+typedef struct bst_s
+{
+	int n;
+	struct bst_s *left;
+	struct bst_s *right;
 } bst_t;
 
-typedef struct avl_s {
-    int n;
-    struct avl_s *left;
-    struct avl_s *right;
-    int height;
+/**
+ * struct avl_s - AVL Tree node
+ *
+ * @n: Integer stored in the node
+ * @left: Pointer to the left child node
+ * @right: Pointer to the right child node
+ * @height: Height of the node in the tree
+ *
+ * Description: Node structure for an AVL Tree,
+ * which is a self-balancing binary search tree.
+ */
+typedef struct avl_s
+{
+	int n;
+	struct avl_s *left;
+	struct avl_s *right;
+	int height;
 } avl_t;
 
+/* Function prototypes */
 void binary_tree_print(const binary_tree_t *);
 void heap_print(const heap_t *heap);
 void heap_delete(heap_t *heap);
@@ -81,7 +115,8 @@ binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_sibling(binary_tree_t *node);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second);
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
+		const binary_tree_t *second);
 binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);
 binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);
 

@@ -9,9 +9,9 @@
  */
 size_t heap_size(const heap_t *heap)
 {
-    if (!heap)
-        return (0);
-    return (1 + heap_size(heap->left) + heap_size(heap->right));
+	if (!heap)
+		return (0);
+	return (1 + heap_size(heap->left) + heap_size(heap->right));
 }
 
 /**
@@ -23,32 +23,32 @@ size_t heap_size(const heap_t *heap)
  */
 int *heap_to_sorted_array(heap_t *heap, size_t *size)
 {
-    int *array;
-    size_t i = 0;
-    int extracted_value;
+	int *array;
+	size_t i = 0;
+	int extracted_value;
 
-    if (!heap || !size)
-        return (NULL);
+	if (!heap || !size)
+		return (NULL);
 
-    *size = heap_size(heap);
+	*size = heap_size(heap);
 
     /* Allocate memory for the sorted array */
-    array = malloc(*size * sizeof(int));
-    if (!array)
-        return (NULL);
+	array = malloc(*size * sizeof(int));
+	if (!array)
+		return (NULL);
 
     /* Extract the root node repeatedly and store values in the array */
-    while (*size)
-    {
-        extracted_value = heap_extract(&heap);
-        if (extracted_value == 0 && heap)
-        {
-            free(array);
-            return (NULL);
-        }
-        array[i++] = extracted_value;
-        (*size)--;
-    }
+	while (*size)
+	{
+		extracted_value = heap_extract(&heap);
+		if (extracted_value == 0 && heap)
+		{
+			free(array);
+			return (NULL);
+		}
+		array[i++] = extracted_value;
+		(*size)--;
+	}
 
-    return (array);
+	return (array);
 }

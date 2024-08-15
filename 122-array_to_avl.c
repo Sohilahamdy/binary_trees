@@ -9,17 +9,17 @@
  */
 avl_t *array_to_avl(int *array, size_t size)
 {
-    avl_t *tree = NULL;
-    size_t i;
+	avl_t *tree = NULL;
+	size_t i;
 
-    if (array == NULL || size == 0)
-        return (NULL);
+	if (array == NULL || size == 0)
+		return (NULL);
 
-    for (i = 0; i < size; i++)
-    {
-        if (array[i] != INT_MIN)  // Assuming INT_MIN is used to denote invalid values
-            avl_insert(&tree, array[i]);
-    }
+	for (i = 0; i < size; i++)
+	{
+		if (array[i] != INT_MIN)
+			avl_insert(&tree, array[i]);
+	}
 
-    return (tree);
+	return (tree);
 }

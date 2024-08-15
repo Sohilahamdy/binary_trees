@@ -9,18 +9,18 @@
  */
 avl_t *avl_insert(avl_t **tree, int value)
 {
-    avl_t *node;
+	avl_t *node;
 
-    if (tree == NULL)
-        return (NULL);
+	if (tree == NULL)
+		return (NULL);
 
     /* Insert the node like in a BST */
-    node = bst_insert(tree, value);
-    if (node == NULL)
-        return (NULL);
+	node = bst_insert(tree, value);
+	if (node == NULL)
+		return (NULL);
 
     /* Rebalance the tree */
-    return (rebalance_tree(tree));
+	return (rebalance_tree(tree));
 }
 
 /**
@@ -31,28 +31,28 @@ avl_t *avl_insert(avl_t **tree, int value)
  */
 avl_t *rebalance_tree(avl_t **tree)
 {
-    int balance;
-    
-    if (tree == NULL || *tree == NULL)
-        return (NULL);
+	int balance;
 
-    balance = binary_tree_balance(*tree);
+	if (tree == NULL || *tree == NULL)
+		return (NULL);
+
+	balance = binary_tree_balance(*tree);
 
     /* Left heavy subtree */
-    if (balance > 1)
-    {
-        if (binary_tree_balance((*tree)->left) < 0)
-            *tree = rotate_left((*tree)->left);
-        return (rotate_right(*tree));
-    }
+	if (balance > 1)
+	{
+		if (binary_tree_balance((*tree)->left) < 0)
+			*tree = rotate_left((*tree)->left);
+		return (rotate_right(*tree));
+	}
 
     /* Right heavy subtree */
-    if (balance < -1)
-    {
-        if (binary_tree_balance((*tree)->right) > 0)
-            *tree = rotate_right((*tree)->right);
-        return (rotate_left(*tree));
-    }
+	if (balance < -1)
+	{
+		if (binary_tree_balance((*tree)->right) > 0)
+			*tree = rotate_right((*tree)->right);
+		return (rotate_left(*tree));
+	}
 
-    return (*tree);
+	return (*tree);
 }

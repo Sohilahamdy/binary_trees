@@ -8,16 +8,17 @@
  *
  * Return: 1 if tree is a valid BST, otherwise 0.
  */
-int is_bst_helper(const binary_tree_t *tree, const binary_tree_t *min, const binary_tree_t *max)
+int is_bst_helper(const binary_tree_t *tree,
+		const binary_tree_t *min, const binary_tree_t *max)
 {
-    if (!tree)
-        return (1);
+	if (!tree)
+		return (1);
 
-    if ((min && tree->n <= min->n) || (max && tree->n >= max->n))
-        return (0);
+	if ((min && tree->n <= min->n) || (max && tree->n >= max->n))
+		return (0);
 
-    return (is_bst_helper(tree->left, min, tree) &&
-            is_bst_helper(tree->right, tree, max));
+	return (is_bst_helper(tree->left, min, tree) &&
+			is_bst_helper(tree->right, tree, max));
 }
 
 /**
@@ -28,8 +29,8 @@ int is_bst_helper(const binary_tree_t *tree, const binary_tree_t *min, const bin
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
-    if (!tree)
-        return (0);
+	if (!tree)
+		return (0);
 
-    return (is_bst_helper(tree, NULL, NULL));
+	return (is_bst_helper(tree, NULL, NULL));
 }

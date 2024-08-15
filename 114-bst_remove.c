@@ -8,12 +8,12 @@
  */
 bst_t *min_value_node(bst_t *node)
 {
-    bst_t *current = node;
+	bst_t *current = node;
 
-    while (current && current->left != NULL)
-        current = current->left;
+	while (current && current->left != NULL)
+		current = current->left;
 
-    return (current);
+	return (current);
 }
 
 /**
@@ -25,41 +25,43 @@ bst_t *min_value_node(bst_t *node)
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-    if (root == NULL)
-        return (NULL);
+	if (root == NULL)
+		return (NULL);
 
-    if (value < root->n) /* Go to the left subtree */
-        root->left = bst_remove(root->left, value);
-    else if (value > root->n) /* Go to the right subtree */
-        root->right = bst_remove(root->right, value);
-    else /* Found the node to be deleted */
-    {
-        if (root->left == NULL) /* Node with one or no child */
-        {
-            bst_t *temp = root->right;
-            if (temp != NULL)
-                temp->parent = root->parent;
-            free(root);
-            return (temp);
-        }
-        else if (root->right == NULL)
-        {
-            bst_t *temp = root->left;
-            if (temp != NULL)
-                temp->parent = root->parent;
-            free(root);
-            return (temp);
-        }
+	if (value < root->n) /* Go to the left subtree */
+		root->left = bst_remove(root->left, value);
+	else if (value > root->n) /* Go to the right subtree */
+		root->right = bst_remove(root->right, value);
+	else /* Found the node to be deleted */
+	{
+		if (root->left == NULL) /* Node with one or no child */
+		{
+			bst_t *temp = root->right;
 
-        /* Node with two children: Get the in-order successor */
-        bst_t *temp = min_value_node(root->right);
+			if (temp != NULL)
+				temp->parent = root->parent;
+			free(root);
+			return (temp);
+		}
+		else if (root->right == NULL)
+		{
+			bst_t *temp = root->left;
 
-        /* Copy the in-order successor's content to this node */
-        root->n = temp->n;
+			if (temp != NULL)
+				temp->parent = root->parent;
+			free(root);
+			return (temp);
+		}
 
-        /* Delete the in-order successor */
-        root->right = bst_remove(root->right, temp->n);
-    }
+		/* Node with two children: Get the in-order successor */
+		bst_t *temp = min_value_node(root->right);
 
-    return (root);
+		/* Copy the in-order successor's content to this node */
+		root->n = temp->n;
+
+		/* Delete the in-order successor */
+		root->right = bst_remove(root->right, temp->n);
+	}
+
+	return (root);
 }

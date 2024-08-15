@@ -9,8 +9,8 @@
  */
 void enqueue(binary_tree_t **queue, binary_tree_t *node, int *tail)
 {
-    queue[*tail] = node;
-    (*tail)++;
+	queue[*tail] = node;
+	(*tail)++;
 }
 
 /**
@@ -22,8 +22,8 @@ void enqueue(binary_tree_t **queue, binary_tree_t *node, int *tail)
  */
 binary_tree_t *dequeue(binary_tree_t **queue, int *head)
 {
-    (*head)++;
-    return queue[*head - 1];
+	(*head)++;
+	return (queue[*head - 1]);
 }
 
 /**
@@ -34,41 +34,41 @@ binary_tree_t *dequeue(binary_tree_t **queue, int *head)
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-    binary_tree_t *queue[1024];
-    int head = 0, tail = 0;
-    int flag = 0; /* Indicates we've encountered a non-full node */
+	binary_tree_t *queue[1024];
+	int head = 0, tail = 0;
+	int flag = 0; /* Indicates we've encountered a non-full node */
 
-    if (!tree)
-        return (0);
+	if (!tree)
+		return (0);
 
-    enqueue(queue, (binary_tree_t *)tree, &tail);
+	enqueue(queue, (binary_tree_t *)tree, &tail);
 
-    while (head < tail)
-    {
-        binary_tree_t *current = dequeue(queue, &head);
+	while (head < tail)
+	{
+		binary_tree_t *current = dequeue(queue, &head);
 
-        if (current->left)
-        {
-            if (flag)
-                return (0);
-            enqueue(queue, current->left, &tail);
-        }
-        else
-        {
-            flag = 1;
-        }
+		if (current->left)
+		{
+			if (flag)
+				return (0);
+			enqueue(queue, current->left, &tail);
+		}
+		else
+		{
+			flag = 1;
+		}
 
-        if (current->right)
-        {
-            if (flag)
-                return (0);
-            enqueue(queue, current->right, &tail);
-        }
-        else
-        {
-            flag = 1;
-        }
-    }
+		if (current->right)
+		{
+			if (flag)
+				return (0);
+			enqueue(queue, current->right, &tail);
+		}
+		else
+		{
+			flag = 1;
+		}
+	}
 
-    return (1);
+	return (1);
 }
