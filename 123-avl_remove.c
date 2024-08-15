@@ -1,6 +1,7 @@
 #include "binary_trees.h"
 
 static avl_t *handle_removal(avl_t *root);
+static avl_t *balance_avl(avl_t *root);
 
 /**
  * remove_node - Remove a node from an AVL tree and rebalance the tree
@@ -82,24 +83,24 @@ static avl_t *handle_removal(avl_t *root)
  */
 static avl_t *balance_avl(avl_t *root)
 {
-	int balance = binary_tree_balance(root);
+	int balance = binary_tree_balance((binary_tree_t *)root);
 
-	if (balance > 1 && binary_tree_balance(root->left) >= 0)
-		return (binary_tree_rotate_right(root));
+	if (balance > 1 && binary_tree_balance((const binary_tree_t *)root->left) >= 0)
+		return ((avl_t *)binary_tree_rotate_right((binary_tree_t *)root));
 
-	if (balance > 1 && binary_tree_balance(root->left) < 0)
+	if (balance > 1 && binary_tree_balance((const binary_tree_t *)root->left) < 0)
 	{
-		root->left = binary_tree_rotate_left(root->left);
-		return (binary_tree_rotate_right(root));
+		root->left = (avl_t *)binary_tree_rotate_left((binary_tree_t *)root->left);
+		return ((avl_t *)binary_tree_rotate_right((binary_tree_t *)root));
 	}
 
-	if (balance < -1 && binary_tree_balance(root->right) <= 0)
-		return (binary_tree_rotate_left(root));
+	if (balance < -1 && binary_tree_balance((const binary_tree_t *)root->right) <= 0)
+		return ((avl_t *)binary_tree_rotate_left((binary_tree_t *)root));
 
-	if (balance < -1 && binary_tree_balance(root->right) > 0)
+	if (balance < -1 && binary_tree_balance((const binary_tree_t *)root->right) > 0)
 	{
-		root->right = binary_tree_rotate_right(root->right);
-		return (binary_tree_rotate_left(root));
+		root->right = (avl_t *)binary_tree_rotate_right((binary_tree_t *)root->right);
+		return ((avl_t *)binary_tree_rotate_left((binary_tree_t *)root));
 	}
 
 	return (root);

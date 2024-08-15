@@ -1,5 +1,7 @@
 #include "binary_trees.h"
 
+static avl_t *sorted_array_to_avl_rec(int *array, size_t start, size_t end);
+
 /**
  * sorted_array_to_avl - Build an AVL tree from a sorted array
  * @array: Pointer to the first element of the array
@@ -30,7 +32,7 @@ static avl_t *sorted_array_to_avl_rec(int *array, size_t start, size_t end)
 		return (NULL);
 
 	mid = (start + end) / 2;
-	node = binary_tree_node(NULL, array[mid]);
+	node = (avl_t *)binary_tree_node(NULL, array[mid]);
 	if (!node)
 		return (NULL);
 

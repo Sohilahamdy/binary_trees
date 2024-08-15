@@ -70,6 +70,7 @@ typedef struct bst_s
 typedef struct avl_s
 {
 	int n;
+	struct avl_s *parent;
 	struct avl_s *left;
 	struct avl_s *right;
 	int height;
