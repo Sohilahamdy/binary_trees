@@ -76,11 +76,12 @@ typedef struct avl_s
 	int height;
 } avl_t;
 
+
 /* Function prototypes */
 void binary_tree_print(const binary_tree_t *tree);
 void bst_print(const bst_t *tree);
 void bst_delete(bst_t *tree);
-void heap_print(const heap_t *tree);
+void heap_print(const heap_t *heap);
 void heap_delete(heap_t *heap);
 void print_avl_tree(avl_t *tree);
 void binary_tree_delete(binary_tree_t *tree);

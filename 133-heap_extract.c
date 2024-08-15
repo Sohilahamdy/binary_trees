@@ -73,12 +73,11 @@ int heap_extract(heap_t **root)
 
     /* Count the number of nodes in the heap */
 	size = heap_size(*root);
-
-    /* Find the last node in the heap */
-	find_last_node(*root, &last_node, 0, &size);
-
 	if (size == 0)
 		return (0);
+
+	/* Find the last node in the heap */
+	find_last_node(*root, &last_node, 0, &size);
 
     /* Extract the root value */
 	root_value = (*root)->n;

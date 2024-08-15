@@ -36,16 +36,24 @@ int main(void)
 		20, 22, 98, 1, 62, 95
 	};
 	size_t n = sizeof(array) / sizeof(array[0]);
-	int *sorted;
-	size_t sorted_size;
+    int extract;
 
-	print_array(array, n);
-	tree = array_to_heap(array, n);
-	if (!tree)
-		return (1);
-	binary_tree_print(tree);
-	sorted = heap_to_sorted_array(tree, &sorted_size);
-	print_array(sorted, sorted_size);
-	free(sorted);
+    tree = array_to_heap(array, n);
+    if (!tree)
+        return (1);
+    binary_tree_print((const binary_tree_t *)tree);
+
+    extract = heap_extract(&tree);
+    printf("Extracted: %d\n", extract);
+    binary_tree_print((const binary_tree_t *)tree);
+
+    extract = heap_extract(&tree);
+    printf("Extracted: %d\n", extract);
+    binary_tree_print((const binary_tree_t *)tree);
+
+    extract = heap_extract(&tree);
+    printf("Extracted: %d\n", extract);
+    binary_tree_print((const binary_tree_t *)tree);
+    binary_tree_delete((binary_tree_t *)tree);
 	return (0);
 }
