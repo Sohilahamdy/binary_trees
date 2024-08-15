@@ -65,7 +65,6 @@ static void find_last_node(heap_t *root, heap_t **last_node,
 int heap_extract(heap_t **root)
 {
 	heap_t *last_node = NULL;
-	heap_t *temp_root;
 	size_t size = 0;
 	int root_value;
 
