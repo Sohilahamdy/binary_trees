@@ -69,6 +69,7 @@ typedef struct bst_s
 typedef struct avl_s
 {
 	int n;
+	struct avl_s *parent;
 	struct avl_s *left;
 	struct avl_s *right;
 	int height;
@@ -107,6 +108,7 @@ bst_t *bst_insert(bst_t **tree, int value);
 bst_t *array_to_bst(int *array, size_t size);
 bst_t *bst_search(const bst_t *tree, int value);
 bst_t *bst_remove(bst_t *root, int value);
+avl_t *rebalance_tree(avl_t **tree);
 avl_t *avl_insert(avl_t **tree, int value);
 avl_t *array_to_avl(int *array, size_t size);
 avl_t *avl_remove(avl_t *root, int value);
@@ -114,6 +116,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size);
 heap_t *heap_insert(heap_t **root, int value);
 heap_t *array_to_heap(int *array, size_t size);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
+binary_tree_t *bst_insert(binary_tree_t **tree, int value);
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_sibling(binary_tree_t *node);

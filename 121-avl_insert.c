@@ -1,58 +1,82 @@
 #include "binary_trees.h"
 
 /**
- * avl_insert - Inserts a value into an AVL tree and rebalances it
- * @tree: Double pointer to the root node of the AVL tree
+ * avl_insert - Inserts a value into an AVL tree
+ * @tree: Double pointer to the root of the AVL tree
  * @value: The value to insert
- *
- * Return: Pointer to the created node, or NULL on failure
+ * 
+ * Return: Pointer to the newly created node, or NULL on failure
  */
 avl_t *avl_insert(avl_t **tree, int value)
 {
-	avl_t *node;
+    avl_t *new_node;
 
-	if (tree == NULL)
-		return (NULL);
+    if (!tree)
+        return (NULL);
 
-    /* Insert the node like in a BST */
-	node = bst_insert(tree, value);
-	if (node == NULL)
-		return (NULL);
+    if (*tree == NULL)
+    {
+        new_node = binary_tree_node(NULL, value);
+        if (!new_node)
+            return (NULL);
+        *tree = new_node;
+    }
+    else
+    {
+        *tree = avl_insert_node(*tree, value);
+        if (!*tree)
+            return (NULL);
+        // Rebalance the tree
+        *tree = rebalance(*tree);
+    }
 
-    /* Rebalance the tree */
-	return (rebalance_tree(tree));
+    return (*tree);
 }
 
 /**
- * rebalance_tree - Rebalances the AVL tree
- * @tree: Double pointer to the root node of the AVL tree
- *
- * Return: The new root node of the tree
+ * avl_insert_node - Helper function to insert a node into AVL tree
+ * @tree: Pointer to the root of the AVL tree
+ * @value: The value to insert
+ * 
+ * Return: Pointer to the new root of the subtree
  */
-avl_t *rebalance_tree(avl_t **tree)
+static avl_t *avl_insert_node(avl_t *tree, int value)
 {
-	int balance;
+    if (tree == NULL)
+        return (binary_tree_node(NULL, value));
 
-	if (tree == NULL || *tree == NULL)
-		return (NULL);
+    if (value < tree->n)
+        tree->left = avl_insert_node(tree->left, value);
+    else if (value > tree->n)
+        tree->right = avl_insert_node(tree->right, value);
+    else
+        return (tree);
 
-	balance = binary_tree_balance(*tree);
+    return (rebalance(tree));
+}
 
-    /* Left heavy subtree */
-	if (balance > 1)
-	{
-		if (binary_tree_balance((*tree)->left) < 0)
-			*tree = rotate_left((*tree)->left);
-		return (rotate_right(*tree));
-	}
+/**
+ * rebalance - Rebalances the AVL tree
+ * @tree: Pointer to the root of the AVL tree
+ * 
+ * Return: New root of the AVL tree
+ */
+static avl_t *rebalance(avl_t *tree)
+{
+    int balance = binary_tree_balance(tree);
 
-    /* Right heavy subtree */
-	if (balance < -1)
-	{
-		if (binary_tree_balance((*tree)->right) > 0)
-			*tree = rotate_right((*tree)->right);
-		return (rotate_left(*tree));
-	}
+    if (balance > 1)
+    {
+        if (binary_tree_balance(tree->left) < 0)
+            tree->left = binary_tree_rotate_left(tree->left);
+        tree = binary_tree_rotate_right(tree);
+    }
+    else if (balance < -1)
+    {
+        if (binary_tree_balance(tree->right) > 0)
+            tree->right = inary_tree_rotate_right(tree->right);
+        tree = inary_tree_rotate_left(tree);
+    }
 
-	return (*tree);
+    return (tree);
 }
