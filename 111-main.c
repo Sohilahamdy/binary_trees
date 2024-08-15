@@ -14,23 +14,15 @@ int main(void)
 
 	root = NULL;
 	node = bst_insert(&root, 98);
-	printf("Inserted: %d\n", node->n);
 	node = bst_insert(&root, 402);
-	printf("Inserted: %d\n", node->n);
 	node = bst_insert(&root, 12);
-	printf("Inserted: %d\n", node->n);
 	node = bst_insert(&root, 46);
-	printf("Inserted: %d\n", node->n);
 	node = bst_insert(&root, 128);
-	printf("Inserted: %d\n", node->n);
 	node = bst_insert(&root, 256);
-	printf("Inserted: %d\n", node->n);
 	node = bst_insert(&root, 512);
-	printf("Inserted: %d\n", node->n);
 	node = bst_insert(&root, 1);
-	printf("Inserted: %d\n", node->n);
 	node = bst_insert(&root, 128);
-	printf("Node should be nil -> %p\n", (void *)node);
-	binary_tree_print((const binary_tree_t *)root);
+
+	binary_tree_print(root);
 	return (0);
 }

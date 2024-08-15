@@ -9,28 +9,15 @@
  */
 avl_t *avl_insert(avl_t **tree, int value)
 {
-    avl_t *new_node;
+	if (!tree)
+		return (NULL);
 
-    if (!tree)
-        return (NULL);
+	if (*tree == NULL)
+		return (*tree = avl_node_create(value));
 
-    if (*tree == NULL)
-    {
-        new_node = binary_tree_node(NULL, value);
-        if (!new_node)
-            return (NULL);
-        *tree = new_node;
-    }
-    else
-    {
-        *tree = avl_insert_node(*tree, value);
-        if (!*tree)
-            return (NULL);
-        // Rebalance the tree
-        *tree = rebalance(*tree);
-    }
+	*tree = avl_insert_node(*tree, value);
 
-    return (*tree);
+	return (*tree);
 }
 
 /**
@@ -42,17 +29,19 @@ avl_t *avl_insert(avl_t **tree, int value)
  */
 static avl_t *avl_insert_node(avl_t *tree, int value)
 {
-    if (tree == NULL)
-        return (binary_tree_node(NULL, value));
+	if (tree == NULL)
+		return (avl_node_create(value));
 
-    if (value < tree->n)
-        tree->left = avl_insert_node(tree->left, value);
-    else if (value > tree->n)
-        tree->right = avl_insert_node(tree->right, value);
-    else
-        return (tree);
+	if (value < tree->n)
+		tree->left = avl_insert_node(tree->left, value);
+	else if (value > tree->n)
+		tree->right = avl_insert_node(tree->right, value);
+	else
+		return (tree);
 
-    return (rebalance(tree));
+	tree = avl_rebalance(tree);
+
+	return (tree);
 }
 
 /**
@@ -61,22 +50,22 @@ static avl_t *avl_insert_node(avl_t *tree, int value)
  * 
  * Return: New root of the AVL tree
  */
-static avl_t *rebalance(avl_t *tree)
+static avl_t *avl_rebalance(avl_t *tree)
 {
-    int balance = binary_tree_balance(tree);
+	int balance = avl_tree_balance(tree);
 
-    if (balance > 1)
-    {
-        if (binary_tree_balance(tree->left) < 0)
-            tree->left = binary_tree_rotate_left(tree->left);
-        tree = binary_tree_rotate_right(tree);
-    }
-    else if (balance < -1)
-    {
-        if (binary_tree_balance(tree->right) > 0)
-            tree->right = inary_tree_rotate_right(tree->right);
-        tree = inary_tree_rotate_left(tree);
-    }
+	if (balance > 1)
+	{
+		if (avl_tree_balance(tree->left) < 0)
+			tree->left = avl_rotate_left(tree->left);
+		tree = avl_rotate_right(tree);
+	}
+	else if (balance < -1)
+	{
+		if (avl_balance(tree->right) > 0)
+			tree->right = avl_rotate_right(tree->right);
+		tree = avl_rotate_left(tree);
+	}
 
-    return (tree);
+	return (tree);
 }
