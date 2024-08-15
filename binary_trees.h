@@ -55,7 +55,6 @@ typedef struct bst_s
 	struct bst_s *right;
 } bst_t;
 
-typedef binary_tree_t bst_t;
 
 /**
  * struct avl_s - AVL Tree node
@@ -79,6 +78,7 @@ typedef struct avl_s
 /* Function prototypes */
 void binary_tree_print(const binary_tree_t *tree);
 void bst_print(const bst_t *tree);
+void bst_delete(bst_t *tree);
 void heap_print(const heap_t *heap);
 void heap_delete(heap_t *heap);
 void binary_tree_delete(binary_tree_t *tree);
@@ -97,6 +97,8 @@ int binary_tree_is_avl(const binary_tree_t *tree);
 int binary_tree_is_heap(const binary_tree_t *tree);
 int heap_extract(heap_t **root);
 int *heap_to_sorted_array(heap_t *heap, size_t *size);
+int avl_balance(const avl_t *tree);
+int avl_tree_balance(const avl_t *tree);
 size_t binary_tree_size(const binary_tree_t *tree);
 size_t heap_size(const heap_t *heap);
 size_t binary_tree_height(const binary_tree_t *tree);
@@ -112,9 +114,13 @@ avl_t *avl_insert(avl_t **tree, int value);
 avl_t *array_to_avl(int *array, size_t size);
 avl_t *avl_remove(avl_t *root, int value);
 avl_t *sorted_array_to_avl(int *array, size_t size);
+avl_t *avl_rotate_left(avl_t *tree);
+avl_t *avl_rotate_right(avl_t *tree);
+avl_t *avl_node_create(int value);
+avl_t *avl_insert_node(avl_t *tree, int value);
+avl_t *avl_rebalance(avl_t *tree);
 heap_t *heap_insert(heap_t **root, int value);
 heap_t *array_to_heap(int *array, size_t size);
-binary_tree_print((const binary_tree_t *)tree);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value);
