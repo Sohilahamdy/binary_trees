@@ -18,6 +18,6 @@ int main(void)
 	tree = array_to_avl(array, n);
 	if (!tree)
 		return (1);
-	binary_tree_print(tree);
+	binary_tree_print((const binary_tree_t *)tree);
 	return (0);
 }

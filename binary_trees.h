@@ -81,6 +81,7 @@ void bst_print(const bst_t *tree);
 void bst_delete(bst_t *tree);
 void heap_print(const heap_t *heap);
 void heap_delete(heap_t *heap);
+void print_avl_tree(avl_t *tree);
 void binary_tree_delete(binary_tree_t *tree);
 void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int));
 void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int));

@@ -18,27 +18,28 @@ int main(void)
 	tree = array_to_avl(array, n);
 	if (!tree)
 		return (1);
-	binary_tree_print(tree);
+	binary_tree_print((binary_tree_t *)tree);
 
 	tree = avl_remove(tree, 47);
 	printf("Removed 47...\n");
-	binary_tree_print(tree);
+	binary_tree_print((binary_tree_t *)tree);
 
 	tree = avl_remove(tree, 79);
 	printf("Removed 79...\n");
-	binary_tree_print(tree);
+	binary_tree_print((binary_tree_t *)tree);
 
 	tree = avl_remove(tree, 32);
 	printf("Removed 32...\n");
-	binary_tree_print(tree);
+	binary_tree_print((binary_tree_t *)tree);
 
 	tree = avl_remove(tree, 34);
 	printf("Removed 34...\n");
-	binary_tree_print(tree);
+	binary_tree_print((binary_tree_t *)tree);
 
 	tree = avl_remove(tree, 22);
 	printf("Removed 22...\n");
-	binary_tree_print(tree);
-	binary_tree_delete(tree);
+	binary_tree_print((binary_tree_t *)tree);
+	binary_tree_delete((binary_tree_t *)tree);
+
 	return (0);
 }

@@ -1,5 +1,32 @@
 #include "binary_trees.h"
 
+static avl_t *handle_removal(avl_t *root);
+
+/**
+ * remove_node - Remove a node from an AVL tree and rebalance the tree
+ * @root: Pointer to the root node of the AVL tree
+ * @value: Value to remove from the tree
+ *
+ * Return: Pointer to the new root node of the tree
+ */
+static avl_t *remove_node(avl_t *root, int value)
+{
+        if (!root)
+                return (NULL);
+
+        if (value < root->n)
+                root->left = remove_node(root->left, value);
+        else if (value > root->n)
+                root->right = remove_node(root->right, value);
+        else
+                root = handle_removal(root);
+
+        if (!root)
+                return (NULL);
+
+        return (balance_avl(root));
+}
+
 /**
  * min_value_node - Find the node with the smallest value
  * greater than the given node
@@ -76,31 +103,6 @@ static avl_t *balance_avl(avl_t *root)
 	}
 
 	return (root);
-}
-
-/**
- * remove_node - Remove a node from an AVL tree and rebalance the tree
- * @root: Pointer to the root node of the AVL tree
- * @value: Value to remove from the tree
- *
- * Return: Pointer to the new root node of the tree
- */
-static avl_t *remove_node(avl_t *root, int value)
-{
-	if (!root)
-		return (NULL);
-
-	if (value < root->n)
-		root->left = remove_node(root->left, value);
-	else if (value > root->n)
-		root->right = remove_node(root->right, value);
-	else
-		root = handle_removal(root);
-
-	if (!root)
-		return (NULL);
-
-	return (balance_avl(root));
 }
 
 /**

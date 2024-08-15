@@ -47,7 +47,7 @@ avl_t *avl_insert(avl_t **tree, int value)
  * 
  * Return: Pointer to the new root of the subtree
  */
-static avl_t *avl_insert_node(avl_t *tree, int value)
+avl_t *avl_insert_node(avl_t *tree, int value)
 {
 	if (tree == NULL)
 		return (avl_node_create(value));
@@ -70,7 +70,7 @@ static avl_t *avl_insert_node(avl_t *tree, int value)
  * 
  * Return: New root of the AVL tree
  */
-static avl_t *avl_rebalance(avl_t *tree)
+avl_t *avl_rebalance(avl_t *tree)
 {
 	int balance = avl_tree_balance(tree);
 
@@ -139,6 +139,26 @@ avl_t *avl_rotate_right(avl_t *tree)
 }
 
 /**
+ * max_value - Finds the maximum value among three integers
+ * @a: First integer
+ * @b: Second integer
+ * @c: Third integer
+ *
+ * Return: The maximum value
+ */
+int max_value(int a, int b, int c)
+{
+    int max = a;
+
+    if (b > max)
+        max = b;
+    if (c > max)
+        max = c;
+
+    return max;
+}
+
+/**
  * avl_balance - Computes the height of the subtree
  * @tree: Pointer to the root of the AVL tree
  *
@@ -149,5 +169,6 @@ int avl_balance(const avl_t *tree)
     if (!tree)
         return (0);
 
-    return (1 + fmax(avl_balance(tree->left), avl_balance(tree->right)));
+    return (max_value(1 + avl_balance(tree->left),
+			    1 + avl_balance(tree->right), 0));
 }
