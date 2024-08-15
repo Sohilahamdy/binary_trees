@@ -77,6 +77,7 @@ typedef struct avl_s
 /* Function prototypes */
 void binary_tree_print(const binary_tree_t *tree);
 void bst_print(const bst_t *tree);
+void bst_delete(bst_t *tree);
 void heap_print(const heap_t *heap);
 void heap_delete(heap_t *heap);
 void binary_tree_delete(binary_tree_t *tree);

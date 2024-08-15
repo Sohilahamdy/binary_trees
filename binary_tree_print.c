@@ -113,3 +113,17 @@ void bst_print(const bst_t *tree)
 	bst_print(tree->left);
 	bst_print(tree->right);
 }
+
+/**
+ * bst_delet - deletes bst tree
+ *
+ */
+void bst_delete(bst_t *tree)
+{
+    if (tree == NULL)
+        return;
+
+    bst_delete(tree->left);
+    bst_delete(tree->right);
+    free(tree);
+}

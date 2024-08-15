@@ -1,5 +1,6 @@
 #include "binary_trees.h"
 #include <stdbool.h>
+#include <limits.h>
 
 /**
  * height - Computes the height of a binary tree and checks balance
