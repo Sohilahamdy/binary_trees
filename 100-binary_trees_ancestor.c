@@ -11,34 +11,17 @@
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		const binary_tree_t *second)
 {
-	if (first == NULL || second == NULL)
-		return (NULL);
+	binary_tree_t *mom, *pop;
 
-    /* If first or second is the same as root, then root is the LCA */
+	if (!first || !second)
+		return (NULL);
 	if (first == second)
 		return ((binary_tree_t *)first);
 
-    /* If first is root of second or vice versa */
-	if (first->parent == second)
-		return ((binary_tree_t *)second);
-	if (second->parent == first)
-		return ((binary_tree_t *)first);
-
-    /* Traverse upwards from first */
-	const binary_tree_t *ancestor = first;
-
-	while (ancestor)
-	{
-		const binary_tree_t *second_ancestor = second;
-
-		while (second_ancestor)
-		{
-			if (ancestor == second_ancestor)
-				return ((binary_tree_t *)ancestor);
-			second_ancestor = second_ancestor->parent;
-		}
-		ancestor = ancestor->parent;
-	}
-
-	return (NULL);
+	mom = first->parent, pop = second->parent;
+	if (first == pop || !mom || (!mom->parent && pop))
+		return (binary_trees_ancestor(first, pop));
+	else if (mom == second || !pop || (!pop->parent && mom))
+		return (binary_trees_ancestor(mom, second));
+	return (binary_trees_ancestor(mom, pop));
 }
