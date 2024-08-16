@@ -76,6 +76,12 @@ typedef struct avl_s
 	int height;
 } avl_t;
 
+/* Queue node structure for level-order traversal */
+typedef struct levelorder_queue_s
+{
+	binary_tree_t *node;
+	struct levelorder_queue_s *next;
+} levelorder_queue_t;
 
 /* Function prototypes */
 void binary_tree_print(const binary_tree_t *tree);
@@ -94,7 +100,7 @@ int binary_tree_is_root(const binary_tree_t *node);
 int binary_tree_balance(const binary_tree_t *tree);
 int binary_tree_is_full(const binary_tree_t *tree);
 int binary_tree_is_perfect(const binary_tree_t *tree);
-int binary_tree_is_complete(const binary_tree_t *tree, size_t index, size_t total_nodes);
+int binary_tree_is_complete(const binary_tree_t *tree);
 int binary_tree_is_bst(const binary_tree_t *tree);
 int binary_tree_is_avl(const binary_tree_t *tree);
 int binary_tree_is_heap(const binary_tree_t *tree);
