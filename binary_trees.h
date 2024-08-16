@@ -3,6 +3,8 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 /**
  * struct binary_tree_s - Binary tree node
@@ -41,7 +43,6 @@ void binary_tree_print(const binary_tree_t *);
 /* Function prototypes */
 void binary_tree_print(const binary_tree_t *tree);
 void bst_print(const bst_t *tree);
-void bst_delete(bst_t *tree);
 void heap_print(const heap_t *heap);
 void heap_delete(heap_t *heap);
 void print_avl_tree(avl_t *tree);
@@ -76,6 +77,7 @@ bst_t *bst_insert(bst_t **tree, int value);
 bst_t *array_to_bst(int *array, size_t size);
 bst_t *bst_search(const bst_t *tree, int value);
 bst_t *bst_remove(bst_t *root, int value);
+bst_t *bst_delete(bst_t *root, bst_t *node);
 avl_t *avl_insert(avl_t **tree, int value);
 avl_t *array_to_avl(int *array, size_t size);
 avl_t *avl_remove(avl_t *root, int value);
